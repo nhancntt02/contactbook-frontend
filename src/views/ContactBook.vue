@@ -42,6 +42,16 @@
                     <i class="fas fa-address-card"></i>
                 </h4>
                 <ContactCard :contact="activeContact"/>
+                <router-link
+                    :to="{
+                        name: 'contact.edit',
+                        params: { id: activeContact._id }
+                    }"
+                >
+                    <span class="mt-2 badge badge-warning">
+                        <i class="fas fa-edit"></i> Hiệu chỉnh</span
+                    >
+                </router-link>
             </div>
         </div>
     </div>
@@ -82,7 +92,7 @@ export default {
             if (!this.searchText) {
                 return this.contacts;
             }
-            return this.contacts.fllter((_contact, index) =>
+            return this.contacts.filter((_contact, index) =>
                 this.contactStrings[index].includes(this.searchText)
             );
         },
